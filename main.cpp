@@ -82,12 +82,20 @@ public:
 	bool PagarBoleto(colectivo linea){
 		fecha now;
 		if( now.hora >= 6 ){
-			saldo -= MEDIO;
-			return true;
+			if(saldo - MEDIO > 0){
+				saldo -= MEDIO;
+				return true;
+			}
+			else
+				return false;
 		}
 		else{
-			saldo -= COMUN;
-			return false;
+			if(Saldo - COMUN > 0){
+				saldo -= COMUN;
+				return true;	
+			}
+			else
+				return false;
 		}
 	}
 };
