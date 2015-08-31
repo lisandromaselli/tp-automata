@@ -2,7 +2,7 @@
 #include <cstring>
 #include <ctime>
 #include <cstdio>
-#include <queue> 
+#include <queue>
 #define forn(i, n) for(int i=0; i<(int)(n); ++i)
 #define debug(x) cout<<#x<<" = "<<x<<endl
 using namespace std;
@@ -59,8 +59,13 @@ float operator - (fecha a, fecha b) {
 class Tarjeta{
 protected:
 	float saldo;
-	queue<viaje> u_viajes; 
+	queue<viaje> u_viajes;
 public:
+	void AgregarViaje(viaje a){
+		u_viajes.push(a);
+		if(u_viajes.size()>5)
+			u_viajes.pop();
+	}
 	void Recarga(int monto){
 		if(monto<MONTO1)
 			saldo+= monto;
@@ -72,27 +77,33 @@ public:
 	float Saldo(){
 		return saldo;
 	}
-	virtual bool PagarBoleto(colectivo linea) = 0;
-
+	virtual bool PagarBoleto(colectivo linea,fecha hora) = 0;
 	Tarjeta() :  saldo(0){}
+	queue<viaje> ViajesRealizados(){return u_viajes;}
 };
 
 class Medio : public Tarjeta{
 public:
-	bool PagarBoleto(colectivo linea){
-		fecha now;
-		if( now.hora >= 6 ){
+	bool PagarBoleto(colectivo linea,fecha hora){
+		if( hora.hora >= 6 ){
+			/*if(Trasbordo(linea,hora)){
+				saldo -= MEDIO;
+				AgregarViaje(viaje(linea,hora,MEDIO));
+				return true;
+			}*/
 			if(saldo - MEDIO > 0){
 				saldo -= MEDIO;
+				AgregarViaje(viaje(linea,hora,MEDIO));
 				return true;
 			}
 			else
 				return false;
 		}
 		else{
-			if(Saldo - COMUN > 0){
+			if(saldo - COMUN > 0){
 				saldo -= COMUN;
-				return true;	
+				AgregarViaje(viaje(linea,hora,COMUN));
+				return true;
 			}
 			else
 				return false;
@@ -101,21 +112,25 @@ public:
 };
 class Comun : public Tarjeta{
 public:
-	
+	bool PagarBoleto(colectivo linea,fecha hora){
+		if(saldo - COMUN > 0){
+			saldo -= COMUN;
+			AgregarViaje(viaje(linea,hora,COMUN));
+			return true;
+		}
+		else
+			return false;
+		}
 };
 
 
 int main(){
 	Medio a;
-	colectivo b("136","semtur",12323);
-	viaje  a1(b,fecha(),2.90);
-	cout<<a1.monto<<endl;
-	debug(fecha().hora);
+	Comun a1;
+	colectivo b("137","semtur",12323);
+	colectivo c("138","semtur",12325);
 	a.Recarga(100);
-	a.PagarBoleto(b);
-	cout<<a.Saldo()<<endl;
 
-	cout<<b<<endl;
 
 	return 0;
 }
