@@ -2,11 +2,13 @@
 #include <cstring>
 #include <ctime>
 #include <cstdio>
-#include <queue>
+#include <vector>
 #define forn(i, n) for(int i=0; i<(int)(n); ++i)
 #define debug(x) cout<<#x<<" = "<<x<<endl
 using namespace std;
 const double MEDIO = 2.90;
+const double MEDIOT = 0.96;
+const double COMUNT = 1.90;
 const double COMUN = 5.75;
 const int MONTO1= 196;
 const int MONTO2 = 368;
@@ -59,13 +61,15 @@ float operator - (fecha a, fecha b) {
 class Tarjeta{
 protected:
 	float saldo;
-	queue<viaje> u_viajes;
-public:
-	void AgregarViaje(viaje a){
-		u_viajes.push(a);
-		if(u_viajes.size()>5)
-			u_viajes.pop();
+	vector<viaje> u_viajes;
+	bool Trasbordo(colectivo linea,fecha horaActual){
+		int actual = u_viajes.size();
+		if( actual >= 1 && horaActual - u_viajes[actual-1].hora <= 1 )
+			if( actual <= 1 || u_viajes[actual-1].hora - u_viajes[actual-2].hora > 1 )
+				return true;
+		return false;
 	}
+public:
 	void Recarga(int monto){
 		if(monto<MONTO1)
 			saldo+= monto;
@@ -79,30 +83,35 @@ public:
 	}
 	virtual bool PagarBoleto(colectivo linea,fecha hora) = 0;
 	Tarjeta() :  saldo(0){}
-	queue<viaje> ViajesRealizados(){return u_viajes;}
+	vector<viaje> ViajesRealizados(){return u_viajes;}
 };
 
 class Medio : public Tarjeta{
 public:
 	bool PagarBoleto(colectivo linea,fecha hora){
 		if( hora.hora >= 6 ){
-			/*if(Trasbordo(linea,hora)){
-				saldo -= MEDIO;
-				AgregarViaje(viaje(linea,hora,MEDIO));
+			if(Trasbordo(linea,hora)){
+				saldo -= MEDIOT;
+				u_viajes.push_back(viaje(linea,hora,MEDIOT));
 				return true;
-			}*/
+			}
 			if(saldo - MEDIO > 0){
 				saldo -= MEDIO;
-				AgregarViaje(viaje(linea,hora,MEDIO));
+				u_viajes.push_back(viaje(linea,hora,MEDIO));
 				return true;
 			}
 			else
 				return false;
 		}
 		else{
+			if(Trasbordo(linea,hora)){
+				saldo -= COMUNT;
+				u_viajes.push_back(viaje(linea,hora,COMUNT));
+				return true;
+			}
 			if(saldo - COMUN > 0){
 				saldo -= COMUN;
-				AgregarViaje(viaje(linea,hora,COMUN));
+				u_viajes.push_back(viaje(linea,hora,COMUN));
 				return true;
 			}
 			else
@@ -113,9 +122,14 @@ public:
 class Comun : public Tarjeta{
 public:
 	bool PagarBoleto(colectivo linea,fecha hora){
+		if(Trasbordo(linea,hora)){
+				saldo -= COMUNT;
+				u_viajes.push_back(viaje(linea,hora,COMUNT));
+				return true;
+			}
 		if(saldo - COMUN > 0){
 			saldo -= COMUN;
-			AgregarViaje(viaje(linea,hora,COMUN));
+			u_viajes.push_back(viaje(linea,hora,COMUN));
 			return true;
 		}
 		else
@@ -126,10 +140,15 @@ public:
 
 int main(){
 	Medio a;
-	Comun a1;
 	colectivo b("137","semtur",12323);
 	colectivo c("138","semtur",12325);
 	a.Recarga(100);
+	a.PagarBoleto(b,fecha(22));
+	cout<<a.Saldo()<<endl;
+	a.PagarBoleto(c,fecha(23));
+	cout<<a.Saldo()<<endl;
+	a.PagarBoleto(c,fecha(23,02));
+	cout<<a.Saldo()<<endl;
 
 
 	return 0;
