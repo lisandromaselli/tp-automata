@@ -5,4 +5,4 @@ compiler:
     -gcc
 
 script:
-    -g++ -std=c++11 test.cpp -o prog && ./prog
+    -g++ -std=c++11 main.cpp -o prog && ./prog
