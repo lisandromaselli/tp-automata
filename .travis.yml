@@ -1,3 +1,5 @@
 lenguage: cpp
 
 compiler: gcc
+
+script: rake ci
