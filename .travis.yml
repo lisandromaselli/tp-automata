@@ -1,5 +1,8 @@
-lenguage: cpp
+lenguage: 
+    -cpp
 
-compiler: gcc
+compiler: 
+    -gcc
 
-script: rake ci
+script:
+    -g++ -std=c++11 test.cpp -o prog && ./prog
