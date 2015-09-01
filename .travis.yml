@@ -1,8 +1,8 @@
 lenguage: 
-    -cpp
+    - cpp
 
 compiler: 
-    -gcc
+    - gcc
 
 script:
-    -g++ -std=c++11 main.cpp -o prog && ./prog
+    - g++ -std=c++11 main.cpp -o prog && ./prog
