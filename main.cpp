@@ -136,20 +136,3 @@ public:
 			return false;
 		}
 };
-
-
-int main(){
-	Medio a;
-	colectivo b("137","semtur",12323);
-	colectivo c("138","semtur",12325);
-	a.Recarga(100);
-	a.PagarBoleto(b,fecha(22));
-	cout<<a.Saldo()<<endl;
-	a.PagarBoleto(c,fecha(23));
-	cout<<a.Saldo()<<endl;
-	a.PagarBoleto(c,fecha(23,02));
-	cout<<a.Saldo()<<endl;
-
-
-	return 0;
-}
