@@ -52,7 +52,11 @@ struct viaje{
 	float monto;
 	viaje(colectivo c, fecha h, float m) : cole(c), hora(h), monto(m) {}
 };
-
+bool operator == (colectivo a,colectivo b){
+	if(a.linea==b.linea)
+		return true;
+	return false;
+}
 float operator - (fecha a, fecha b) {
 	return (float)((a.hora*3600+a.minutos*60+a.segundos)-
 		(b.hora*3600+b.minutos*60+b.segundos))/3600;

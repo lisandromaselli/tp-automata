@@ -4,6 +4,10 @@
 using namespace std;
 TEST_CASE() {
 	Medio a;
+	colectivo c1("136","semtur",123123);
+	colectivo c2("136","semtur",132123);
         a.Recarga(100);
         REQUIRE(a.Saldo()==100);
+	REQUIRE(c1==c2);
+
 }
