@@ -8,6 +8,7 @@ TEST_CASE() {
 	colectivo c2("136","semtur",132123);
         a.Recarga(100);
         REQUIRE(a.Saldo()==100);
+	REQUIRE(a.PagarBoleto(c1,fecha(22))==true);
 	REQUIRE(c1==c2);
 
 }
