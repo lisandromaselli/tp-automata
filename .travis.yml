@@ -4,5 +4,4 @@ lenguage:
 compiler: 
     - gcc
 
-script:
-    - g++ main.cpp -o prog && ./prog
+script:prueba.cpp -o prog && ./prog
