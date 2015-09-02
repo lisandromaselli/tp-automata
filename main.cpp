@@ -68,8 +68,8 @@ protected:
 	vector<viaje> u_viajes;
 	bool Trasbordo(colectivo linea,fecha horaActual){
 		int actual = u_viajes.size();
-		if( actual >= 1 && horaActual - u_viajes[actual-1].hora <= 1 )
-			if( actual <= 1 || u_viajes[actual-1].hora - u_viajes[actual-2].hora > 1 )
+		if( actual >= 1 && horaActual - u_viajes[actual-1].hora <= 1 && linea != u_viajes[actual-1].cole)
+			if( actual <= 1 || (u_viajes[actual-1].hora - u_viajes[actual-2].hora > 1 && u_viajes[actual-1].cole != u_viajes[actual-2].cole) )
 				return true;
 		return false;
 	}
