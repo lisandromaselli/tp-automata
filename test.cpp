@@ -24,7 +24,7 @@ TEST_CASE() {
 	CHECK(m1.PagarBoleto(c1,fecha(22)));
 	CHECK(b1.PagarBoleto(c1,fecha(23)));
 	b1.PagarBoleto(c1,fecha(23));
-	REQUIRE(b1.Saldo()==4.25);
+	REQUIRE(b1.Saldo()==Approx(4.25));
 
 	
 	
