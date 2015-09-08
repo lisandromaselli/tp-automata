@@ -8,6 +8,7 @@ TEST_CASE() {
 	vector<viaje> compviaje;
 	colectivo c1("136","semtur",123123);
 	colectivo c2("136","semtur",123456);
+	colectivo c3("115", "mixta", 123321);
         b1.Recarga(10);
         m1.Recarga(100);
         m2.Recarga(197);
@@ -22,12 +23,18 @@ TEST_CASE() {
         REQUIRE(m2.Saldo()==231);
         REQUIRE(m1.Saldo()==100);
 	m1.PagarBoleto(c1,fecha(22));
-	//Pagar boletos con medio y con tarjeta comun
+	//Trasbordo comun 
 	REQUIRE(m1.Saldo()==Approx(97.1));
+	m1.PagarBoleto(c3,fecha(22,30));
+	REQUIRE(m1.Saldo()==Approx(96.14));
+	//Pagar boleto comun y medio
 	CHECK(m1.PagarBoleto(c1,fecha(22)));
 	CHECK(b1.PagarBoleto(c1,fecha(23)));
+	//Trasbordo Comun
 	b1.PagarBoleto(c1,fecha(23));
 	REQUIRE(b1.Saldo()==Approx(4.25));
+	b1.PagarBoleto(c3, fecha(23,30));
+	REQUIRE(b1.Saldo()==Approx(1.35));
 
 	
 	
