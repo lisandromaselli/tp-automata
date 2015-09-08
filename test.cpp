@@ -8,9 +8,9 @@ TEST_CASE("Recarga medio boleto") {
 	m2.Recarga(197);
 	m3.Recarga(368);
 	
-	REQUIRE(m1.Saldo()= Approx(10));
-	REQUIRE(m2.Saldo()=Approx(231));
-	REQUIRE(m3.Saldo()=Approx(460));
+	REQUIRE(m1.Saldo()==10);
+	REQUIRE(m2.Saldo()==231);
+	REQUIRE(m3.Saldo()==460);
 }
 
 TEST_CASE("Recarga tarjeta comun") {
@@ -19,9 +19,9 @@ TEST_CASE("Recarga tarjeta comun") {
 	c2.Recarga(197);
 	c3.Recarga(368);
 	
-	REQUIRE(c1.Saldo()= Approx(10));
-	REQUIRE(c2.Saldo()=Approx(231));
-	REQUIRE(c3.Saldo()=Approx(460));
+	REQUIRE(c1.Saldo()==10);
+	REQUIRE(c2.Saldo()==231);
+	REQUIRE(c3.Saldo()==460);
 }
 
 TEST_CASE("Pagar medio boleto"){
