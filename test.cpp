@@ -16,7 +16,7 @@ TEST_CASE() {
         m3.Recarga(368);
        	m1.ViajesRealizados();
        	viaje v1("K", fecha(01), 5.75);
-       	compviaje.push_back();
+       	compviaje.push_back(v1);
 	
 	//ViajesRealizados
 	REQUIRE(compviaje == b2.ViajesRealizados());
