@@ -38,11 +38,14 @@ TEST_CASE() {
 	b1.PagarBoleto(c3, fecha(23,30));
 	REQUIRE(b1.Saldo()==Approx(2.35));
 	
-	//Dos viajes con la misma tarjeta
+	//Dos viajes con la misma tarjeta comun
         b2.PagarBoleto(c2, fecha(01));
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(38.50));
-
+        //Dos viajes con el mismo medio
+        m2.PagarBoleto(c2, fecha(01));
+        m2.PagarBoleto(c2, fecha(01,01));
+        REQUIRE(m2.Saldo()==Approx(222.35));
 
 	
 	
