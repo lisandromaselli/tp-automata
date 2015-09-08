@@ -5,7 +5,6 @@ using namespace std;
 TEST_CASE() {
 	Medio m1, m2, m3;
 	Comun b1, b2 ;
-	vector<viaje> compviaje;
 	colectivo c1("136","semtur",123123);
 	colectivo c2("136","semtur",123456);
 	colectivo c3("115", "mixta", 123321);
