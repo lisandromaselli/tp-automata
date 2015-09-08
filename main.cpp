@@ -62,7 +62,7 @@ float operator - (fecha a, fecha b) {
 
 class Tarjeta{
 protected:
-	float saldo;
+	float saldo=0;
 	vector<viaje> u_viajes;
 	bool Trasbordo(colectivo linea,fecha horaActual){
 		int actual = u_viajes.size();
