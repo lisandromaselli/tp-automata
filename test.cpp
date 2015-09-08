@@ -30,7 +30,7 @@ TEST_CASE() {
 	//Pagar boleto comun y medio
 	CHECK(m1.PagarBoleto(c1,fecha(22)));
 	CHECK(b1.PagarBoleto(c1,fecha(23)));
-	//Trasbordo Comun
+	//Trasbordo Comun 
 	b1.PagarBoleto(c1,fecha(23));
 	REQUIRE(b1.Saldo()==Approx(4.25));
 	b1.PagarBoleto(c3, fecha(23,30));
