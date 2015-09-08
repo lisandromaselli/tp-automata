@@ -2,62 +2,32 @@
 #include "catch.hpp"
 #include "main.cpp"
 using namespace std;
-TEST_CASE() {
-	Medio m1, m2, m3, m4;
-	Comun b1, b2, b3;
-	//vector<viaje> compviaje;
-	colectivo c1("136","semtur",123123);
-	colectivo c2("136","semtur",123456);
-	colectivo c3("115", "mixta", 123321);
-        b1.Recarga(10);
-        b2.Recarga(50);
-        m1.Recarga(100);
-        m2.Recarga(197);
-        m3.Recarga(368);
-       	/*m1.ViajesRealizados();
-       	viaje v1("K", fecha(01), 5.75);
-       	compviaje.push_back(v1);
+TEST_CASE("Recarga medio boleto") {
+	Medio m1, m2, m3;
+	m1.Recarga(10);
+	m2.Recarga(197);
+	m3.Recarga(368);
 	
-	//ViajesRealizados
-	REQUIRE(compviaje == b2.ViajesRealizados());*/
-        //Recargas de tarjeta(distintos montos)
-        REQUIRE(m3.Saldo()==460);
-        REQUIRE(m2.Saldo()==231);
-        REQUIRE(m1.Saldo()==100);
-	m1.PagarBoleto(c1,fecha(22));
-	//Trasbordo comun 
-	REQUIRE(m1.Saldo()==Approx(97.1));
-	m1.PagarBoleto(c3,fecha(22,30));
-	REQUIRE(m1.Saldo()==Approx(96.14));
-	//Pagar boleto comun y medio
-	CHECK(m1.PagarBoleto(c1,fecha(22)));
-	CHECK(b1.PagarBoleto(c1,fecha(23)));
-	//Trasbordo Comun 
-	b1.PagarBoleto(c1,fecha(23));
-	REQUIRE(b1.Saldo()==Approx(4.25));
-	b1.PagarBoleto(c3, fecha(23,30));
-	REQUIRE(b1.Saldo()==Approx(2.35));
+	REQUIRE(m1.Saldo()= Approx(10));
+	REQUIRE(m2.Saldo()=Approx(231));
+	REQUIRE(m3.Saldo()=Approx(460));
+}
+
+TEST_CASE("Recarga tarjeta comun") {
+	Comun c1, c2, c3;
+	c1.Recarga(10);
+	c2.Recarga(197);
+	c3.Recarga(368);
 	
-	//Dos viajes con la misma tarjeta comun
-        b2.PagarBoleto(c2, fecha(01));
-        b2.PagarBoleto(c2, fecha(01,01));
-        REQUIRE(b2.Saldo()==Approx(38.50));
-        //Dos viajes con el mismo medio
-        m2.PagarBoleto(c2, fecha(07));
-        m2.PagarBoleto(c2, fecha(07,01));
-        REQUIRE(m2.Saldo()==Approx(225.20));
+	REQUIRE(c1.Saldo()= Approx(10));
+	REQUIRE(c2.Saldo()=Approx(231));
+	REQUIRE(c3.Saldo()=Approx(460));
+}
 
-	//Tarjetas sin saldo
-	m4.PagarBoleto(c2, fecha(01,01));
-	REQUIRE (m4.Saldo()==false);
-	b3.PagarBoleto(c2, fecha(01,01));
-	REQUIRE (b3.Saldo()==false);
-
-
-
-	REQUIRE(c1==c2);
+TEST_CASE("Pagar medio boleto"){
+	Medio m1;
+	m1.Recarga(100);
+	m1.Pagar
 	
-	
-
 }
 
