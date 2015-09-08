@@ -3,8 +3,6 @@
 #include <ctime>
 #include <cstdio>
 #include <vector>
-#define forn(i, n) for(int i=0; i<(int)(n); ++i)
-#define debug(x) cout<<#x<<" = "<<x<<endl
 using namespace std;
 const double MEDIO = 2.90;
 const double MEDIOT = 0.96;
