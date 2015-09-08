@@ -34,7 +34,7 @@ TEST_CASE() {
 	b1.PagarBoleto(c1,fecha(23));
 	REQUIRE(b1.Saldo()==Approx(4.25));
 	b1.PagarBoleto(c3, fecha(23,30));
-	REQUIRE(b1.Saldo()==Approx(1.35));
+	REQUIRE(b1.Saldo()==Approx(2.35));
 
 	
 	
