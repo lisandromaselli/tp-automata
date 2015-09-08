@@ -20,7 +20,7 @@ TEST_CASE() {
         REQUIRE(m2.Saldo()==231);
         REQUIRE(m1.Saldo()==100);
 	m1.PagarBoleto(c1,fecha(22));
-	REQUIRE(m1.Saldo()==97.10);
+	REQUIRE(m1.Saldo()==97.1);
 	REQUIRE(m1.PagarBoleto(c1,fecha(22))==true);
 	REQUIRE(b1.PagarBoleto(c1,fecha(23))== true);
 	b1.PagarBoleto(c1,fecha(23));
