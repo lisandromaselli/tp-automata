@@ -3,9 +3,9 @@
 #include "main.cpp"
 using namespace std;
 TEST_CASE() {
-	Medio m1, m2, m3;
-	Comun b1, b2 ;
-	vector<viaje> compviaje;
+	Medio m1, m2, m3, m4;
+	Comun b1, b2, b3;
+	//vector<viaje> compviaje;
 	colectivo c1("136","semtur",123123);
 	colectivo c2("136","semtur",123456);
 	colectivo c3("115", "mixta", 123321);
@@ -14,12 +14,12 @@ TEST_CASE() {
         m1.Recarga(100);
         m2.Recarga(197);
         m3.Recarga(368);
-       	m1.ViajesRealizados();
+       	/*m1.ViajesRealizados();
        	viaje v1("K", fecha(01), 5.75);
        	compviaje.push_back(v1);
 	
 	//ViajesRealizados
-	REQUIRE(compviaje == b2.ViajesRealizados());
+	REQUIRE(compviaje == b2.ViajesRealizados());*/
         //Recargas de tarjeta(distintos montos)
         REQUIRE(m3.Saldo()==460);
         REQUIRE(m2.Saldo()==231);
@@ -47,8 +47,14 @@ TEST_CASE() {
         m2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(m2.Saldo()==Approx(222.35));
 
-	
-	
+	//Tarjetas sin saldo
+	m4.PagarBoleto(c2, fecha(01,01));
+	REQUIRE (m4.Saldo()==false);
+	b3.PagarBoleto(c2, fecha(01,01));
+	REQUIRE (b3.Saldo()==false);
+
+
+
 	REQUIRE(c1==c2);
 	
 	
