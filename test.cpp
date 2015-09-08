@@ -5,7 +5,7 @@ using namespace std;
 TEST_CASE() {
 	Medio m1, m2, m3;
 	Comun b1, b2 ;
-	vector<viaje> compviaje;
+	//vector<viaje> compviaje;
 	colectivo c1("136","semtur",123123);
 	colectivo c2("136","semtur",123456);
 	colectivo c3("115", "mixta", 123321);
@@ -14,11 +14,10 @@ TEST_CASE() {
         m1.Recarga(100);
         m2.Recarga(197);
         m3.Recarga(368);
-        b2.PagarBoleto(c2, fecha(01));
-       compviaje.push_back(c2(136,fecha(01),5.75));
+       //compviaje.push_back(c2(136,fecha(01),5.75));
 	
 	//ViajesRealizados
-	REQUIRE(compviaje == b2.ViajesRealizados());
+	//REQUIRE(compviaje == b2.ViajesRealizados());
         //Recargas de tarjeta(distintos montos)
         REQUIRE(m3.Saldo()==460);
         REQUIRE(m2.Saldo()==231);
@@ -38,7 +37,10 @@ TEST_CASE() {
 	REQUIRE(b1.Saldo()==Approx(2.35));
 	
 	//Dos viajes con la misma tarjeta
-	b2.PagarBoleto(c3, fecha(23,31));
+        b2.PagarBoleto(c2, fecha(01));
+        b2.PagarBoleto(c2, fecha(01,01));
+        REQUIRE(b2.Saldo()==Approx(38.50));
+
 
 	
 	
