@@ -45,7 +45,7 @@ TEST_CASE() {
         //Dos viajes con el mismo medio
         m2.PagarBoleto(c2, fecha(07));
         m2.PagarBoleto(c2, fecha(07,01));
-        REQUIRE(m2.Saldo()==Approx(222.35));
+        REQUIRE(m2.Saldo()==Approx(225.20));
 
 	//Tarjetas sin saldo
 	m4.PagarBoleto(c2, fecha(01,01));
