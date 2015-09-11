@@ -2,7 +2,7 @@
 #include "catch.hpp"
 #include "main.cpp"
 using namespace std;
-TEST_CASE("Recarga medio boleto") {
+TEST_CASE(/*"Recarga medio boleto"*/) {
 	Medio m1, m2, m3;
 	m1.Recarga(10);
 	m2.Recarga(197);
@@ -13,7 +13,7 @@ TEST_CASE("Recarga medio boleto") {
 	REQUIRE(m3.Saldo()==460);
 }
 
-TEST_CASE("Recarga tarjeta comun") {
+TEST_CASE(/*"Recarga tarjeta comun"*/) {
 	Comun c1, c2, c3;
 	c1.Recarga(10);
 	c2.Recarga(197);
@@ -24,7 +24,7 @@ TEST_CASE("Recarga tarjeta comun") {
 	REQUIRE(c3.Saldo()==460);
 }
 
-TEST_CASE("Pagar medio boleto"){
+TEST_CASE(/*"Pagar medio boleto"*/){
 	Medio m1;
 	colectivo c1("136","semtur",1234)
 	m1.Recarga(100);
