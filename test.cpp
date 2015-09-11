@@ -26,8 +26,9 @@ TEST_CASE("Recarga tarjeta comun") {
 
 TEST_CASE("Pagar medio boleto"){
 	Medio m1;
+	colectivo c1("136","semtur",1234)
 	m1.Recarga(100);
-	m1.Pagar
+	m1.PagarBoleto(c1,fecha(22));
 	
 }
 
