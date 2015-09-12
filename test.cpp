@@ -83,7 +83,7 @@ TEST_CASE("Trasbordo medio boleto"){
 	m1.PagarBoleto(c2,fecha(22,30));
 	REQUIRE(m1.Saldo==Approx(96.14));
 	
-}
+}/*
 TEST_CASE("Trasbordo comun"){
 	Comun t1;
 	t1.Recarga(100);
@@ -92,4 +92,4 @@ TEST_CASE("Trasbordo comun"){
 	t1.PagarBoleto(c2,fecha(22,30));
 	REQUIRE(t1.Saldo==Approx(92.35));
 	
-}
+}*/
