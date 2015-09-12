@@ -78,7 +78,8 @@ TEST_CASE("Tarjetas sin saldo"){
 TEST_CASE("Trasbordo medio boleto"){
 	Medio m1;
 	m1.Recarga(100);
-	colectivo c1("133", "Semtur", 121212), c2("K", "Semtur", 212121);
+	colectivo c1("133", "Semtur", 121212);
+	colectivo c2("K", "Semtur", 212121);
 	m1.PagarBoleto(c1,fecha(22));
 	m1.PagarBoleto(c2,fecha(22,30));
 	REQUIRE(m1.Saldo==Approx(96.14));
