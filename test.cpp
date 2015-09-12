@@ -60,7 +60,7 @@ TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
 	Medio b2;
 	b2.Recarga(100);
 	colectivo c2("115", "mixta", 23145);
-	b2.PagarBoleto(c2, fecha(01));
-        b2.PagarBoleto(c2, fecha(01,01));
+	b2.PagarBoleto(c2, fecha(07));
+        b2.PagarBoleto(c2, fecha(07,01));
         REQUIRE(b2.Saldo()==Approx(94.2));
 }
