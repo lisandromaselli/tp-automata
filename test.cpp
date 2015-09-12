@@ -39,11 +39,20 @@ TEST_CASE("Pagar boleto comun"){
 	CHECK(t1.PagarBoleto(c1,fecha(22)));
 	
 }
-TEST_CASE(){
+TEST_CASE("Dos viajes con la misma tarjeta"){
 	Comun b2;
 	b2.Recarga(100);
 	colectivo c2("115", "mixta", 23145);
 	b2.PagarBoleto(c2, fecha(01));
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(88.5));
+}
+
+TEST_CASE("Dos viajes con el mismo medio boleto"){
+	Medio b2;
+	b2.Recarga(100);
+	colectivo c2("115", "mixta", 23145);
+	b2.PagarBoleto(c2, fecha(01));
+        b2.PagarBoleto(c2, fecha(01,01));
+        REQUIRE(b2.Saldo()==Approx(94.2));
 }
