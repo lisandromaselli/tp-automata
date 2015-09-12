@@ -28,7 +28,7 @@ TEST_CASE("Pagar medio boleto"){
 	Medio m1;
 	colectivo c1("136","semtur",1234);
 	m1.Recarga(100);
-	m1.PagarBoleto(c1,fecha(22));
+	CHECK(m1.PagarBoleto(c1,fecha(22)));
 	
 }
 
@@ -36,6 +36,14 @@ TEST_CASE("Pagar boleto comun"){
 	Comun t1;
 	colectivo c1("136","semtur",1234);
 	t1.Recarga(100);
-	t1.PagarBoleto(c1,fecha(22));
+	CHECK(t1.PagarBoleto(c1,fecha(22)));
 	
+}
+TEST_CASE(){
+	Comun b2;
+	b2.Recarga(100);
+	colectivo c2("115", "mixta", 23145);
+	b2.PagarBoleto(c2, fecha(01));
+        b2.PagarBoleto(c2, fecha(01,01));
+        REQUIRED (b2.Saldo()==Approx(88,5));
 }
