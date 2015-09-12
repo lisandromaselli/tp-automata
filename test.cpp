@@ -32,3 +32,10 @@ TEST_CASE("Pagar medio boleto"){
 	
 }
 
+TEST_CASE("Pagar boleto comun"){
+	Comun t1;
+	colectivo c1("136","semtur",1234);
+	t1.Recarga(100);
+	t1.PagarBoleto(c1,fecha(22));
+	
+}
