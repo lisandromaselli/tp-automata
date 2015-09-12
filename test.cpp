@@ -45,5 +45,5 @@ TEST_CASE(){
 	colectivo c2("115", "mixta", 23145);
 	b2.PagarBoleto(c2, fecha(01));
         b2.PagarBoleto(c2, fecha(01,01));
-        REQUIRE(b2.Saldo()==Approx(88,5));
+        REQUIRE(b2.Saldo()==Approx(88.5));
 }
