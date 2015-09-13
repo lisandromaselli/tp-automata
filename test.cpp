@@ -77,7 +77,7 @@ TEST_CASE("Tarjetas sin saldo"){
 	CHECK_FALSE(b1.PagarBoleto(c2, fecha(01,01)));
 	REQUIRE (b1.Saldo()==0);
 }
-/*
+
 TEST_CASE("Trasbordo medio boleto"){
 	Medio m1;
 	colectivo c2("116", "Semtur", 123432);
@@ -89,4 +89,4 @@ TEST_CASE("Trasbordo medio boleto"){
 	
 	
 }
-*/
+
