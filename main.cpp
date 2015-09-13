@@ -38,12 +38,6 @@ public:
 	}
 };
 
-ostream &operator<<(ostream &s, colectivo &c){
-	cout<<"Colectivo "<<c.linea<<endl;
-	cout<<c.empresa<<endl;
-	return s;
-}
-
 struct viaje{
 	colectivo cole;
 	fecha hora;
@@ -52,6 +46,11 @@ struct viaje{
 };
 bool operator == (colectivo a,colectivo b){
 	if(a.linea==b.linea)
+		return true;
+	return false;
+}
+bool operator == (fecha a,fecha b){
+	if(a.hora==b.hora && a.minutos==b.minutos && a.segundos==b.segundos)
 		return true;
 	return false;
 }
