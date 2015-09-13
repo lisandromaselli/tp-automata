@@ -44,11 +44,11 @@ TEST_CASE("Pagar medio boleto"){
 	Medio m1;
 	colectivo c1("136","semtur",1234);
 	m1.Recarga(100);
-	CHECK(m1.PagarBoleto(c1,fecha(22)));
+	CHECK(m1.PagarBoleto(c1,fecha("22/06/2015 22:59")));
 	REQUIRE(m1.Saldo()==Approx(97.1));
 	REQUIRE(m1.ViajesRealizados().size()==1);
 	CHECK(m1.ViajesRealizados().front().cole==c1);
-	CHECK(m1.ViajesRealizados().front().hora==fecha(22));
+	CHECK(m1.ViajesRealizados().front().hora==fecha("22/06/2015 22:59"));
 	REQUIRE(m1.ViajesRealizados().front().monto==Approx(2.90));
 	
 }
@@ -57,7 +57,7 @@ TEST_CASE("Pagar boleto comun"){
 	Comun t1;
 	colectivo c1("136","semtur",1234);
 	t1.Recarga(100);
-	CHECK(t1.PagarBoleto(c1,fecha(22)));
+	CHECK(t1.PagarBoleto(c1,fecha("22/06/2015 22:59")));
 	REQUIRE(t1.Saldo()==Approx(94.25));
 	
 }
@@ -65,8 +65,8 @@ TEST_CASE("Dos viajes con la misma tarjeta"){
 	Comun b2;
 	b2.Recarga(100);
 	colectivo c2("115", "mixta", 23145);
-	b2.PagarBoleto(c2, fecha(01));
-        b2.PagarBoleto(c2, fecha(01,01));
+	b2.PagarBoleto(c2, fecha("22/06/2015 22:59"));
+        b2.PagarBoleto(c2, fecha("22/06/2015 23:00"));
         REQUIRE(b2.Saldo()==Approx(88.5));
         REQUIRE(b2.ViajesRealizados().size()==2);
 }
@@ -75,8 +75,8 @@ TEST_CASE("Dos viajes con el mismo medio boleto antes de las 6 am"){
 	Medio b2;
 	b2.Recarga(100);
 	colectivo c2("115", "mixta", 23145);
-	b2.PagarBoleto(c2, fecha(01));
-        b2.PagarBoleto(c2, fecha(01,01));
+	b2.PagarBoleto(c2, fecha("22/06/2015 01:20"));
+        b2.PagarBoleto(c2, fecha("22/06/2015 01:22"));
         REQUIRE(b2.Saldo()==Approx(88.5));
         REQUIRE(b2.ViajesRealizados().size()==2);
 }
@@ -85,8 +85,8 @@ TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
 	Medio b2;
 	b2.Recarga(100);
 	colectivo c2("115", "mixta", 23145);
-	b2.PagarBoleto(c2, fecha(07));
-        b2.PagarBoleto(c2, fecha(07,01));
+	b2.PagarBoleto(c2, fecha("22/06/2015 07:00"));
+        b2.PagarBoleto(c2, fecha("22/06/2015 07:30"));
         REQUIRE(b2.Saldo()==Approx(94.2));
         REQUIRE(b2.ViajesRealizados().size()==2);
 }
@@ -95,10 +95,10 @@ TEST_CASE("Tarjetas sin saldo"){
 	Medio m1;
 	Comun b1;
 	colectivo c2("116", "Semtur", 123432);
-	CHECK_FALSE(m1.PagarBoleto(c2, fecha(01,01)));
+	CHECK_FALSE(m1.PagarBoleto(c2, fecha("22/06/2015 01:20")));
 	REQUIRE (m1.Saldo()==0);
 	REQUIRE(m1.ViajesRealizados().size()==0);
-	CHECK_FALSE(b1.PagarBoleto(c2, fecha(01,01)));
+	CHECK_FALSE(b1.PagarBoleto(c2, fecha("22/06/2015 01:20")));
 	REQUIRE (b1.Saldo()==0);
 	REQUIRE(b1.ViajesRealizados().size()==0);
 }
@@ -108,8 +108,9 @@ TEST_CASE("Trasbordo medio boleto"){
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
 	m1.Recarga(100);
-	m1.PagarBoleto(c2,fecha(22));
-	m1.PagarBoleto(c3,fecha(22,20));
+	m1.PagarBoleto(c2,fecha("22/06/2015 08:20"));
+	m1.PagarBoleto(c3,fecha("22/06/2015 08:30"));
+	CHECK(m1.ViajesRealizados().front().hora==fecha("22/06/2015 08:20"));
 	REQUIRE(m1.Saldo()==Approx(96.14));
 }
 TEST_CASE("Trasbordo boleto comun"){
@@ -117,16 +118,16 @@ TEST_CASE("Trasbordo boleto comun"){
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
 	m1.Recarga(100);
-	m1.PagarBoleto(c2,fecha(22));
-	m1.PagarBoleto(c3,fecha(22,20));
+	m1.PagarBoleto(c2,fecha("22/06/2015 01:20"));
+	m1.PagarBoleto(c3,fecha("22/06/2015 01:30"));
 	REQUIRE(m1.Saldo()==Approx(92.35));
 }
-TEST_CASE("Transbordo medio antes de las 6 de la mañana"){
+TEST_CASE("Transbordo medio antes de las 6 am"){
 	Medio m1;
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
 	m1.Recarga(100);
-	m1.PagarBoleto(c2,fecha(01));
-	m1.PagarBoleto(c3,fecha(01,20));
+	m1.PagarBoleto(c2,fecha("22/06/2015 01:20"));
+	m1.PagarBoleto(c3,fecha("22/06/2015 01:30"));
 	REQUIRE(m1.Saldo()==Approx(92.35));
 }
