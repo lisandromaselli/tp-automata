@@ -147,7 +147,7 @@ TEST_CASE("Transbordo medio varios viajes en menos de una hora"){
 	
 }
 TEST_CASE("Transbordo boleto comun varios viajes en menos de una hora"){
-	Medio b1;
+	Comun b1;
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
 	colectivo c4("136","semtur",123411);
