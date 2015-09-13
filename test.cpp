@@ -159,4 +159,4 @@ TEST_CASE("Transbordo medio varios viajes en menos de una hora"){
 	REQUIRE(b1.ViajesRealizados()[1].monto==Approx(1.9));
 	REQUIRE(b1.ViajesRealizados()[2].monto==Approx(5.75));
 	REQUIRE(b1.Saldo()==Approx(86.6));
-	
+}
