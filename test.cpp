@@ -15,6 +15,10 @@ TEST_CASE("Recarga medio boleto") {
 	REQUIRE(m1.Saldo()==10);
 	REQUIRE(m2.Saldo()==231);
 	REQUIRE(m3.Saldo()==460);
+	
+	REQUIRE(m1.ViajesRealizados().size()==0);
+	REQUIRE(m2.ViajesRealizados().size()==0);
+	REQUIRE(m3.ViajesRealizados().size()==0);
 }
 
 TEST_CASE("Recarga tarjeta comun") {
@@ -30,6 +34,10 @@ TEST_CASE("Recarga tarjeta comun") {
 	REQUIRE(c1.Saldo()==10);
 	REQUIRE(c2.Saldo()==231);
 	REQUIRE(c3.Saldo()==460);
+	
+	REQUIRE(c1.ViajesRealizados().size()==0);
+	REQUIRE(c2.ViajesRealizados().size()==0);
+	REQUIRE(c3.ViajesRealizados().size()==0);
 }
 
 TEST_CASE("Pagar medio boleto"){
@@ -38,6 +46,10 @@ TEST_CASE("Pagar medio boleto"){
 	m1.Recarga(100);
 	CHECK(m1.PagarBoleto(c1,fecha(22)));
 	REQUIRE(m1.Saldo()==Approx(97.1));
+	REQUIRE(m1.ViajesRealizados().size()==1);
+	REQUIRE(m1.ViajesRealizados().front().cole==c1);
+	REQUIRE(m1.ViajesRealizados().front().hora==fecha(22));
+	REQUIRE(m1.ViajesRealizados().front().monto==Approx(2.90));
 	
 }
 
