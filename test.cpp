@@ -49,7 +49,7 @@ TEST_CASE("Dos viajes con la misma tarjeta"){
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(88.5));
 }
-/*
+
 TEST_CASE("Dos viajes con el mismo medio boleto antes de las 6 am"){
 	Medio b2;
 	b2.Recarga(100);
@@ -58,6 +58,7 @@ TEST_CASE("Dos viajes con el mismo medio boleto antes de las 6 am"){
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(88.5));
 }
+
 TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
 	Medio b2;
 	b2.Recarga(100);
@@ -66,7 +67,7 @@ TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
         b2.PagarBoleto(c2, fecha(07,01));
         REQUIRE(b2.Saldo()==Approx(94.2));
 }
-
+/*
 TEST_CASE("Tarjetas sin saldo"){
 	Medio m1;
 	Comun b1;
