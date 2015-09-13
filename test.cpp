@@ -98,4 +98,12 @@ TEST_CASE("Trasbordo boleto comun"){
 	m1.PagarBoleto(c3,fecha(22,20));
 	REQUIRE(m1.Saldo()==Approx(92.35));
 }
-
+TEST_CASE("Transbordo medio antes de las 6 de la mañana"){
+	Medio m1;
+	colectivo c2("116", "Semtur", 123432);
+	colectivo c3("121", "Semtur", 123422);
+	m1.Recarga(100);
+	m1.PagarBoleto(c2,fecha(01));
+	m1.PagarBoleto(c3,fecha(01,20));
+	REQUIRE(m1.Saldo()==Approx(92.35));
+}
