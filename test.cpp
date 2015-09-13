@@ -4,6 +4,10 @@
 using namespace std;
 TEST_CASE("Recarga medio boleto") {
 	Medio m1, m2, m3;
+	REQUIRE(m1.Saldo()==0);
+	REQUIRE(m2.Saldo()==0);
+	REQUIRE(m3.Saldo()==0);
+	
 	m1.Recarga(10);
 	m2.Recarga(197);
 	m3.Recarga(368);
@@ -15,6 +19,10 @@ TEST_CASE("Recarga medio boleto") {
 
 TEST_CASE("Recarga tarjeta comun") {
 	Comun c1, c2, c3;
+	REQUIRE(c1.Saldo()==0);
+	REQUIRE(c2.Saldo()==0);
+	REQUIRE(c3.Saldo()==0);
+	
 	c1.Recarga(10);
 	c2.Recarga(197);
 	c3.Recarga(368);
@@ -48,6 +56,7 @@ TEST_CASE("Dos viajes con la misma tarjeta"){
 	b2.PagarBoleto(c2, fecha(01));
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(88.5));
+        REQUIRE(b2.ViajesRealizados().size()==2);
 }
 
 TEST_CASE("Dos viajes con el mismo medio boleto antes de las 6 am"){
@@ -57,6 +66,7 @@ TEST_CASE("Dos viajes con el mismo medio boleto antes de las 6 am"){
 	b2.PagarBoleto(c2, fecha(01));
         b2.PagarBoleto(c2, fecha(01,01));
         REQUIRE(b2.Saldo()==Approx(88.5));
+        REQUIRE(b2.ViajesRealizados().size()==2);
 }
 
 TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
@@ -66,6 +76,7 @@ TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
 	b2.PagarBoleto(c2, fecha(07));
         b2.PagarBoleto(c2, fecha(07,01));
         REQUIRE(b2.Saldo()==Approx(94.2));
+        REQUIRE(b2.ViajesRealizados().size()==2);
 }
 
 TEST_CASE("Tarjetas sin saldo"){
