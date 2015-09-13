@@ -151,10 +151,10 @@ TEST_CASE("Transbordo medio varios viajes en menos de una hora"){
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
 	colectivo c4("136","semtur",123411);
-	m1.Recarga(100);
-	m1.PagarBoleto(c2,fecha("22/06/2015 08:20"));
-	m1.PagarBoleto(c3,fecha("22/06/2015 08:30"));
-	m1.PagarBoleto(c3,fecha("22/06/2015 08:40"));
+	b1.Recarga(100);
+	b1.PagarBoleto(c2,fecha("22/06/2015 08:20"));
+	b1.PagarBoleto(c3,fecha("22/06/2015 08:30"));
+	b1.PagarBoleto(c3,fecha("22/06/2015 08:40"));
 	REQUIRE(b1.ViajesRealizados()[0].monto==Approx(5.75));
 	REQUIRE(b1.ViajesRealizados()[1].monto==Approx(1.9));
 	REQUIRE(b1.ViajesRealizados()[2].monto==Approx(5.75));
