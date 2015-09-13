@@ -85,7 +85,7 @@ TEST_CASE("Trasbordo medio boleto"){
 	m1.Recarga(100);
 	m1.PagarBoleto(c2,fecha(22));
 	m1.PagarBoleto(c3,fecha(22,20));
-	REQUIRE(m1.Saldo==Approx(96.14));
+	REQUIRE(m1.Saldo()==Approx(96.14));
 	
 	
 }
