@@ -67,17 +67,17 @@ TEST_CASE("Dos viajes con el mismo medio boleto despues de las 6 am"){
         b2.PagarBoleto(c2, fecha(07,01));
         REQUIRE(b2.Saldo()==Approx(94.2));
 }
-/*
+
 TEST_CASE("Tarjetas sin saldo"){
 	Medio m1;
 	Comun b1;
 	colectivo c2("116", "Semtur", 123432);
-	m1.PagarBoleto(c2, fecha(01,01));
-	REQUIRE (m1.Saldo()==false);
-	b1.PagarBoleto(c2, fecha(01,01));
-	REQUIRE (b1.Saldo()==false);
+	CHECK_FALSE(m1.PagarBoleto(c2, fecha(01,01)));
+	REQUIRE (m1.Saldo()==0);
+	CHECK_FALSE(b1.PagarBoleto(c2, fecha(01,01)));
+	REQUIRE (b1.Saldo()==0);
 }
-
+/*
 TEST_CASE("Trasbordo medio boleto"){
 	Medio m1;
 	colectivo c2("116", "Semtur", 123432);
