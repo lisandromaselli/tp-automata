@@ -74,8 +74,10 @@ TEST_CASE("Tarjetas sin saldo"){
 	colectivo c2("116", "Semtur", 123432);
 	CHECK_FALSE(m1.PagarBoleto(c2, fecha(01,01)));
 	REQUIRE (m1.Saldo()==0);
+	REQUIRE(m1.ViajesRealizados().size()==0);
 	CHECK_FALSE(b1.PagarBoleto(c2, fecha(01,01)));
 	REQUIRE (b1.Saldo()==0);
+	REQUIRE(b1.ViajesRealizados().size()==0);
 }
 
 TEST_CASE("Trasbordo medio boleto"){
@@ -94,6 +96,6 @@ TEST_CASE("Trasbordo boleto comun"){
 	m1.Recarga(100);
 	m1.PagarBoleto(c2,fecha(22));
 	m1.PagarBoleto(c3,fecha(22,20));
-	REQUIRE(m1.Saldo()==Approx(96.2));
+	REQUIRE(m1.Saldo()==Approx(92.35));
 }
 
