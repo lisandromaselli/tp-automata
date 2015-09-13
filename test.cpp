@@ -146,7 +146,7 @@ TEST_CASE("Transbordo medio varios viajes en menos de una hora"){
 	REQUIRE(m1.Saldo()==Approx(93.24));
 	
 }
-TEST_CASE("Transbordo medio varios viajes en menos de una hora"){
+TEST_CASE("Transbordo boleto comun varios viajes en menos de una hora"){
 	Medio b1;
 	colectivo c2("116", "Semtur", 123432);
 	colectivo c3("121", "Semtur", 123422);
