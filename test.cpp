@@ -177,5 +177,5 @@ TEST_CASE("Viajes realizados"){
 	l1.push_back( viaje(c2, fecha("22/06/2015 08:30"), 1.90 ) );
 	l1.push_back( viaje(c2, fecha("22/06/2015 08:40"), 5.75 ) );
 	
-	REQUIRE( t1.ViajesRealizados() == l1 )
+	REQUIRE( t1.ViajesRealizados() == l1 );
 }
