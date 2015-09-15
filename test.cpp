@@ -160,3 +160,22 @@ TEST_CASE("Transbordo boleto comun varios viajes en menos de una hora"){
 	REQUIRE(b1.ViajesRealizados()[2].monto==Approx(5.75));
 	REQUIRE(b1.Saldo()==Approx(86.6));
 }
+
+TEST_CASE("Viajes realizados"){
+	Comun t1;
+	colectivo c1("136","semtur",123411);
+	colectivo c2("116", "Semtur", 123432);
+	colectivo c3("121", "Semtur", 123422);
+	vector<viaje> l1;
+	
+	t1.Recarga(100);
+	
+	t1.PagarBoleto(c1,fecha("22/06/2015 08:20"));
+	t1.PagarBoleto(c2,fecha("22/06/2015 08:30"));
+	t1.PagarBoleto(c3,fecha("22/06/2015 08:40"));
+	
+	l1.push_back( viaje(c1, fecha("22/06/2015 08:20"), 5.75 ) );
+	
+	
+	
+}
