@@ -56,7 +56,7 @@ bool operator == (fecha a,fecha b){
 
 bool operator == (viaje v1, viaje v2){
 	if (v1.hora==v2.hora)
-		if (v1.colectivo==v2.colectivo)
+		if (v1.cole==v2.cole)
 			if( -0.01 <= v1.monto-v2.monto && v1.monto-v2.monto <= 0.01 )
 				return true;
 	return false;
